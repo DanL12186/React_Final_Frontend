@@ -3,6 +3,18 @@ import React from 'react'
 const clickMe = (movie) => {
   console.log(movie)
 
+    // fetch(`https://www.google.com/search?q=${movie.title}+%28Movie%29`)
+    //   .then(response=> console.log(response))
+//        function(imageSearch) {
+//     const image = $("#uid_0") || $("#uid_2")
+//     charDiv.append(`<img>${imageSearch.image}</img>`)
+// })
+}
+
+
+function handleSubmit(event) {
+  event.preventDefault();
+  console.log(event)
 }
 
 const Movie = ({movie}) => (
