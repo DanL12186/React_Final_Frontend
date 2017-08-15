@@ -17,6 +17,12 @@ function handleSubmit(event) {
   console.log(event)
 }
 
+// function vote(n) { //running average
+//   votes++;
+//   return rating += ((n - rating)/votes);
+// }
+
+
 const Movie = ({movie}) => (
   <div>
     <h3>{movie.title}</h3>
