@@ -1,7 +1,7 @@
 import React from 'react'
-
-const clickMe = (movie) => {
-  console.log(movie)
+const clickMe = (movie, rating) => {
+  //console.log(movie)
+  console.log(rating)
 
     // fetch(`https://www.google.com/search?q=${movie.title}+%28Movie%29`)
     //   .then(response=> console.log(response))
@@ -11,11 +11,6 @@ const clickMe = (movie) => {
 // })
 }
 
-
-function handleSubmit(event) {
-  event.preventDefault();
-  console.log(event)
-}
 
 // function vote(n) { //running average
 //   votes++;
@@ -31,7 +26,12 @@ const Movie = ({movie}) => (
     <p>MPAA Rating: {movie.mpaa}</p>
     <p>Number of Votes: {movie.votes}</p>
 
-    <button onClick={() => clickMe(movie)}>Click</button>
+    <h4>Rate Me</h4>
+    <button onClick={() => clickMe(movie, 1)}>1</button>
+    <button onClick={() => clickMe(movie, 2)}>2</button>
+    <button onClick={() => clickMe(movie, 3)}>3</button>
+    <button onClick={() => clickMe(movie, 4)}>4</button>
+    <button onClick={() => clickMe(movie, 5)}>5</button>
     <br/>
 
   </div>
