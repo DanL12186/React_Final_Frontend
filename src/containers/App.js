@@ -13,6 +13,13 @@ import uikit from '../uikit.css'
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
 //import {addMovies, deleteMovies} from './reducers/movies'
 
+export function movies(movies){
+  return {
+    type: 'ADD_MOVIES',
+    movies
+  }
+}
+
 class App extends Component {
   constructor(props) {
   super(props)
