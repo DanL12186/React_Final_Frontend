@@ -31,13 +31,21 @@ class App extends Component {
        <div className="App">
          <Navbar />
          <p><img src={logo} className="App-logo" height="42" alt="My logo"/></p>
+         <Switch>
+           <Route exact path = "/" component={Home}/>
+           <Route path = "/movies" component={Movies}/>
+           <Route path = "/new" component={AddMovie}/>
+           <Route path = "/topmovies" component={TopMovies}/>
+         </Switch>
        </div>
      </BrowserRouter>
     );
   }
 }
 
-//mapDispatchToProps
-//dispatch => addMovies
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators(
+    { movies }, dispatch);
+};
 
-export default App
+export default connect(null, mapDispatchToProps)(App)
