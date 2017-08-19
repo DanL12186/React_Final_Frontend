@@ -1,10 +1,10 @@
 import {createStore, applyMiddleware, combineReducers } from 'redux'
 import thunk from 'redux-thunk'
-//import movies from './reducers/movies'
+import movies from './reducers/movies'
 
-// const reducers = combineReducers({
-//   movies
-// })
+const reducers = combineReducers({
+  movies
+})
 
 const middleware = [thunk]
 
