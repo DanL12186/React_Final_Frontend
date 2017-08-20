@@ -4,10 +4,23 @@ import { bindActionCreators } from 'redux';
 
 import Movie from './Movie'
 
+export function addMovies(movies){
+  return {
+    type: 'ADD_MOVIES',
+    movies
+  }
+}
+
 class Movies extends Component {
   constructor(props) {
-    super(props)
+  super(props)
+}
+  componentDidMount() {
+    fetch('http://localhost:3001/api/movies')
+      .then(response => response.json())
+      .then(movies => this.props.addMovies(movies))
   }
+
   render() {
     return (
       <div>
