@@ -1,15 +1,21 @@
-import React from 'react';
+import React, {Component} from 'react';
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux';
 
 import Movie from './Movie'
 
-const Movies = (props) => (
-
-  <div>
-    <h1>Movies</h1>
-    { props.movies.map(movie =>
-      <div key={movie.id}><Movie movie={movie}/></div>
-    )}
-  </div>
-)
-
-export default Movies;
+class Movies extends Component {
+  constructor(props) {
+    super(props)
+  }
+  render() {
+    return (
+      <div>
+        <h1>Movies</h1>
+        { this.props.movies.map(movie =>
+          <div key={movie.id}><Movie movie={movie}/></div>
+        )}
+      </div>
+     )
+   }
+ }
