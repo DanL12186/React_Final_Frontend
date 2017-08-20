@@ -19,3 +19,14 @@ class Movies extends Component {
      )
    }
  }
+
+ const mapStateToProps = state => {
+  return {
+    movies: state.movies.movies
+  }
+}
+
+ const mapDispatchToProps = dispatch => {
+   return bindActionCreators(
+     { addMovies }, dispatch);
+ };
