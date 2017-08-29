@@ -3,9 +3,6 @@ import { connect } from 'react-redux'
 import Movie from './Movie'
 
 class topMovies extends Component {
-  constructor(props) {
-  super(props)
-}
 
 render() {
   return (
