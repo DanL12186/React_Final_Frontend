@@ -4,6 +4,8 @@ import { Provider } from 'react-redux';
 
 import store from './store'
 import './index.css';
+import './navbar.css';
+import './uikit.css';
 import App from './containers/App';
 import registerServiceWorker from './registerServiceWorker';
 
