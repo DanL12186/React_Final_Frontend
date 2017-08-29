@@ -8,7 +8,6 @@ import AddMovie from './AddMovie'
 import TopMovies from './TopMovies'
 import Home from './Home'
 import Navbar from '../components/navbar'
-import uikit from '../uikit.css'
 
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
 //import {addMovies, deleteMovies} from './reducers/movies'
@@ -21,9 +20,6 @@ export function movies(movies){
 }
 
 class App extends Component {
-  constructor(props) {
-  super(props)
-}
 
   componentDidMount() {
     fetch('http://localhost:3001/api/movies')// || fetch ("localhost:3000/api/movies")
