@@ -3,7 +3,7 @@ export default function manageMovieRatings(state = {
   }, action) {
   switch (action.type) {
     case 'UPDATE_MOVIE_RATING':
-      const filterOutCurrentMovie = state.movies.filter(m => m.id !== action.movie.id)
+      const filterOutCurrentMovie = state.movies.filter(mov => mov.id !== action.movie.id)
     return Object.assign({}, state, {
       movies: filterOutCurrentMovie.concat(action.movie)
      });
