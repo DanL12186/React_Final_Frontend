@@ -8,6 +8,7 @@ import AddMovie from './AddMovie'
 import TopMovies from './TopMovies'
 import Home from './Home'
 import Navbar from '../components/navbar'
+import Footer from '../components/footer'
 
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
 //import {addMovies, deleteMovies} from './reducers/movies'
@@ -22,14 +23,13 @@ export function movies(movies){
 class App extends Component {
 
   componentDidMount() {
-    fetch('http://localhost:3001/api/movies')// || fetch ("localhost:3000/api/movies")
+    fetch('http://localhost:3001/api/movies')
       .then(response => response.json())
       .then(movies => this.props.movies(movies))
   }
 
   render() {
     return (
-
       <BrowserRouter>
        <div className="App">
          <Navbar />
@@ -40,6 +40,7 @@ class App extends Component {
            <Route path = "/new" component={AddMovie}/>
            <Route path = "/topmovies" component={TopMovies}/>
          </Switch>
+         <Footer />
        </div>
      </BrowserRouter>
     );
