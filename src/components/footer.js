@@ -4,8 +4,8 @@ import { NavLink } from 'react-router-dom';
 const Footer = () =>  {
   return (
     <div className="App">
-      <footer className="uk-footer footer">
-        <div className="uk-navbar-flip">
+      <footer className="footer">
+        <div className="footer">
           <ul className="uk-navbar-nav">
             <li><NavLink to="/">Home</NavLink></li>
             <li><NavLink to="/movies">Movies</NavLink></li>
@@ -15,6 +15,7 @@ const Footer = () =>  {
         </div>
       </footer>
     </div>
+
   )
 }
 export default Footer;
