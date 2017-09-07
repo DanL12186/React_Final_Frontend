@@ -29,10 +29,11 @@ class Movies extends Component {
   }
 
   render() {
+    const movies = this.props.movies.sort((a,b) => b.rating - a.rating)
     return (
       <div>
         <h1>Movies</h1>
-        { this.props.movies.map(movie =>
+        { movies.map(movie =>
           <div key={movie.id}><Movie movie={movie} updateVote={(movie) => this.updateVote(movie)}/></div>
         )}
       </div>
