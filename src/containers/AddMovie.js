@@ -5,7 +5,6 @@ class AddMovie extends Component {
     super(props)
 
     this.state = {
-      movies: [],
       title: '',
       year: '',
       mpaa: '',
@@ -14,6 +13,7 @@ class AddMovie extends Component {
   }
 
   handleSubmit = (event) => {
+    const { history } = this.props
     fetch("http://localhost:3001/api/movies", {
       method: 'POST',
       headers: {
@@ -21,7 +21,7 @@ class AddMovie extends Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(this.state)
-    })
+    }).then(res => history.push('/movies'))
   }
 
   handleChange = (event) => {
