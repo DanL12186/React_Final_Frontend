@@ -7,6 +7,7 @@ import Movies from './Movies'
 import AddMovie from './AddMovie'
 import TopMovies from './TopMovies'
 import Home from './Home'
+import Watchlist from './Watchlist'
 import Navbar from '../components/navbar'
 import Footer from '../components/footer'
 
@@ -39,6 +40,7 @@ class App extends Component {
            <Route path = "/movies" component={Movies}/>
            <Route path = "/new" component={AddMovie}/>
            <Route path = "/topmovies" component={TopMovies}/>
+           <Route exact path = "/watchlist" component={Watchlist}/>
          </Switch>
          <Footer />
        </div>
