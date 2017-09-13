@@ -26,6 +26,10 @@ const roundRatings = (rating) => {
   return Math.round(rating * 100) / 100
 }
 
+const addToWatchlist = (movie) => {
+
+}
+
 const Movie = (props) => (
   <div>
     <br/>
@@ -34,6 +38,8 @@ const Movie = (props) => (
     <p>User Rating: {roundRatings(props.movie.rating)} Stars</p>
     <p>MPAA Rating: {props.movie.mpaa}</p>
     <p>Number of Votes: {props.movie.votes}</p>
+
+    <button onClick={() => addToWatchlist(props.movie)}>Add to Watchlist</button>
 
     <h4>Rate Me</h4>
     <button onClick={() => vote(props.movie, 1, props.updateVote)}>1</button>
