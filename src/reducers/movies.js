@@ -11,6 +11,13 @@ export default function manageMovieRatings(state = {
      return Object.assign({}, state, {
         movies: action.movies
       });
+    case 'ADD_TO_WATCHLIST':
+      const movie = state.movies.filter(movie => movie.id === action.movie.id)
+      movie[0].list_id = "1"
+      const allMovies = state.movies.filter(movie => movie.id !== action.movie.id)
+      return Object.assign({}, state, {
+        movies: [...allMovies, ...movie]
+       });
     default:
       return state;
   }

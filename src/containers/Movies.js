@@ -17,7 +17,15 @@ export function updateMovieRating(movie) {
   }
 }
 
+export function addMovieToWatchList(movie) {
+  return {
+    type: 'ADD_TO_WATCHLIST',
+    movie
+  }
+}
+
 class Movies extends Component {
+
   componentDidMount() {
     fetch('http://localhost:3001/api/movies')
       .then(response => response.json())
@@ -28,13 +36,20 @@ class Movies extends Component {
     this.props.updateMovieRating(movie)
   }
 
+  addToWatchlist = (movie) => {
+    this.props.addMovieToWatchList(movie)
+  }
+
   render() {
-    const movies = this.props.movies.sort((a,b) => b.rating - a.rating)
+    debugger
+    const movies = this.props.filteredMovies || this.props.movies.sort((a,b) => b.rating - a.rating)
     return (
       <div>
-        <h1>Movies</h1>
+        {this.props.filteredMovies ? null :
+        <div><h1>.</h1>
+        <h1>Movies</h1></div>}
         { movies.map(movie =>
-          <div key={movie.id}><Movie movie={movie} updateVote={(movie) => this.updateVote(movie)}/></div>
+          <div key={movie.id}><Movie movie={movie} updateVote={(movie) => this.updateVote(movie)} addToWatchlist={this.addToWatchlist}/></div>
         )}
       </div>
      )
@@ -49,7 +64,7 @@ class Movies extends Component {
 
  const mapDispatchToProps = dispatch => {
    return bindActionCreators(
-     { addMovies, updateMovieRating }, dispatch);
+     { addMovies, updateMovieRating, addMovieToWatchList }, dispatch);
  };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Movies)
