@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux'
-import Movie from './Movie'
+import Movies from './Movies'
 
 class topMovies extends Component {
 
@@ -8,10 +8,9 @@ render() {
   return (
 
   <div>
+    <h1>.</h1>
     <h1>Top Movies</h1>
-    {this.props.movies.filter(movie => movie.rating > 4).map(movie =>
-      <div key={movie.id}><Movie movie={movie}/></div>
-    )}
+      <Movies filteredMovies={this.props.movies.filter(movie => movie.rating > 4)}/>
   </div>
     )
   }

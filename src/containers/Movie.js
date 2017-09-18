@@ -7,7 +7,7 @@ const vote = (movie, input, updateVote) => {
   updatedMovie.rating = rating;
   updatedMovie.votes++;
 
-  rating = rating.toString().replace(".","_")
+  rating = rating.toString().replace(".", "_")
 
   fetch(`http://localhost:3001/api/movies/${movie.id}/votes/${rating}`, {
     method: 'POST',
@@ -26,10 +26,6 @@ const roundRatings = (rating) => {
   return Math.round(rating * 100) / 100
 }
 
-const addToWatchlist = (movie) => {
-
-}
-
 const Movie = (props) => (
   <div>
     <br/>
@@ -38,8 +34,9 @@ const Movie = (props) => (
     <p>User Rating: {roundRatings(props.movie.rating)} Stars</p>
     <p>MPAA Rating: {props.movie.mpaa}</p>
     <p>Number of Votes: {props.movie.votes}</p>
+    {console.log({props})}
 
-    <button onClick={() => addToWatchlist(props.movie)}>Add to Watchlist</button>
+    <button onClick={()=>props.addToWatchlist(props.movie)}>Add to Watchlist</button>
 
     <h4>Rate Me</h4>
     <button onClick={() => vote(props.movie, 1, props.updateVote)}>1</button>
