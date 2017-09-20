@@ -9,6 +9,7 @@ class AddMovie extends Component {
       year: '',
       mpaa: '',
       rating: '',
+      list_id: '',
     }
   }
 
@@ -33,6 +34,7 @@ class AddMovie extends Component {
   render() {
     return (
       <div>
+       <h1>.</h1>
         <h2>Add Movie</h2>
          <br/>
         <form onSubmit={(event) => this.handleSubmit(event)}>

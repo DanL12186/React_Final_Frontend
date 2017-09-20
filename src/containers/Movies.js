@@ -41,7 +41,6 @@ class Movies extends Component {
   }
 
   render() {
-    debugger
     const movies = this.props.filteredMovies || this.props.movies.sort((a,b) => b.rating - a.rating)
     return (
       <div>
