@@ -14,17 +14,39 @@ const vote = (movie, input, updateVote) => {
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
-    },
-    }).then (response => {
-      if (response.status === 204) {
-        updateVote(updatedMovie)
-      }
-    })
-   }
+  },
+  }).then (response => {
+    if (response.status === 204) {
+      updateVote(updatedMovie)
+    }
+  })
+}
 
 const roundRatings = (rating) => {
   return Math.round(rating * 100) / 100
 }
+
+const watchlist = (movie, addToWatchlist) => {
+  let watchListId = 1
+
+  const updatedMovie = movie;
+  updatedMovie.list_id = watchListId;
+
+  watchListId = watchListId.toString()
+
+  fetch(`http://localhost:3001/api/movies/${movie.id}/watchlist/`, {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+    },
+    }).then (response => {
+      if (response.status === 204) {
+        addToWatchlist(updatedMovie)
+      }
+    })
+   }
+
 
 const Movie = (props) => (
   <div>
@@ -36,7 +58,7 @@ const Movie = (props) => (
     <p>Number of Votes: {props.movie.votes}</p>
     {console.log({props})}
 
-    <button onClick={()=>props.addToWatchlist(props.movie)}>Add to Watchlist</button>
+    <button onClick={() => watchlist(props.movie, props.updateVote)}>Add to Watchlist</button>
 
     <h4>Rate Me</h4>
     <button onClick={() => vote(props.movie, 1, props.updateVote)}>1</button>
