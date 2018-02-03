@@ -14,6 +14,7 @@ class AddMovie extends Component {
   }
 
   handleSubmit = (event) => {
+    event.preventDefault()
     const { history } = this.props
     fetch("http://localhost:3001/api/movies", {
       method: 'POST',
