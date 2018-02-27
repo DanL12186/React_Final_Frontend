@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux';
+import { bindActionCreators } from 'redux'
 import Movie from './Movie'
 
 export function addMovies(movies) {
@@ -12,7 +12,14 @@ export function addMovies(movies) {
 
 export function updateMovieRating(movie) {
   return {
-    type: 'UPDATE_MOVIE_RATING',
+    type: 'UPDATE_MOVIE_RATING_OR_LIKE',
+    movie
+  }
+}
+
+export function updateMovieLike(movie) {
+  return {
+    type: 'UPDATE_MOVIE_RATING_OR_LIKE',
     movie
   }
 }
@@ -25,45 +32,74 @@ export function addMovieToWatchList(movie) {
 }
 
 class Movies extends Component {
-
   componentDidMount() {
     fetch('http://localhost:3001/api/movies')
       .then(response => response.json())
       .then(movies => this.props.addMovies(movies))
   }
 
-  updateVote = (movie) => {
+  updateVote = movie => {
     this.props.updateMovieRating(movie)
   }
 
-  addToWatchlist = (movie) => {
+  updateLike = movie => {
+    movie.like++
+
+    fetch(`http://localhost:3001/api/movies/${movie.id}/like`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      }
+    }).then(response => {
+      if (response.status === 204) {
+        this.props.updateMovieLike(movie)
+      }
+    })
+  }
+
+  addToWatchlist = movie => {
     this.props.addMovieToWatchList(movie)
   }
 
   render() {
-    const movies = this.props.filteredMovies || this.props.movies.sort((a,b) => b.rating - a.rating)
+    const movies =
+      this.props.filteredMovies ||
+      this.props.movies.sort((a, b) => b.rating - a.rating)
     return (
       <div>
-        {this.props.filteredMovies ? null :
-        <div><h1>.</h1>
-        <h1>Movies</h1></div>}
-        { movies.map(movie =>
-          <div key={movie.id}><Movie movie={movie} updateVote={(movie) => this.updateVote(movie)} addToWatchlist={this.addToWatchlist}/></div>
+        {this.props.filteredMovies ? null : (
+          <div>
+            <h1>.</h1>
+            <h1>Movies</h1>
+          </div>
         )}
+        {movies.map(movie => (
+          <div key={movie.id}>
+            <Movie
+              movie={movie}
+              updateVote={movie => this.updateVote(movie)}
+              addToWatchlist={this.addToWatchlist}
+              updateLike={movie => this.updateLike(movie)}
+            />
+          </div>
+        ))}
       </div>
-     )
-   }
- }
+    )
+  }
+}
 
- const mapStateToProps = state => {
+const mapStateToProps = state => {
   return {
     movies: state.movies.movies
   }
 }
 
- const mapDispatchToProps = dispatch => {
-   return bindActionCreators(
-     { addMovies, updateMovieRating, addMovieToWatchList }, dispatch);
- };
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators(
+    { addMovies, updateMovieRating, addMovieToWatchList, updateMovieLike },
+    dispatch
+  )
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Movies)
