@@ -1,9 +1,6 @@
 import React, { Component } from 'react'
 
 class Movie extends Component {
-  constructor(props) {
-    super(props)
-  }
 
    //persist likes to rails backend; reducer, redux store, etc.
 

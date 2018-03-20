@@ -43,16 +43,18 @@ class Movies extends Component {
   }
 
   updateLike = movie => {
-    movie.like++
+    movie.likes++
 
-    fetch(`http://localhost:3001/api/movies/${movie.id}/like`, {
-      method: 'POST',
+    fetch(`http://localhost:3001/api/movies/${movie.id}/`, {
+      method: 'PUT',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json'
-      }
+      },
+      body: JSON.stringify({ movie: {likes: movie.likes} })
+
     }).then(response => {
-      if (response.status === 204) {
+      if (response.status === 200) {
         this.props.updateMovieLike(movie)
       }
     })
