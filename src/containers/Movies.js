@@ -2,34 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import Movie from './Movie'
-
-export function addMovies(movies) {
-  return {
-    type: 'ADD_MOVIES',
-    movies
-  }
-}
-
-export function updateMovieRating(movie) {
-  return {
-    type: 'UPDATE_MOVIE_RATING_OR_LIKE',
-    movie
-  }
-}
-
-export function updateMovieLike(movie) {
-  return {
-    type: 'UPDATE_MOVIE_RATING_OR_LIKE',
-    movie
-  }
-}
-
-export function addMovieToWatchList(movie) {
-  return {
-    type: 'ADD_TO_WATCHLIST',
-    movie
-  }
-}
+import { updateMovieLike, addMovieToWatchList, updateMovieRating, addMovies } from '../actions/movies'
 
 class Movies extends Component {
   componentDidMount() {
